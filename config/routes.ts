@@ -39,126 +39,102 @@ export default [
       },
       {
         component: '404',
-        path: '/*',
+        path: '/user/*',
       },
     ],
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
-    icon: 'dashboard',
-    routes: [
-      {
-        path: '/dashboard',
-        redirect: '/dashboard/analysis',
-      },
-      {
-        name: 'analysis',
-        icon: 'smile',
-        path: '/dashboard/analysis',
-        component: './dashboard/analysis',
-      },
-      {
-        name: 'monitor',
-        icon: 'smile',
-        path: '/dashboard/monitor',
-        component: './dashboard/monitor',
-      },
-      {
         name: 'workplace',
         icon: 'smile',
-        path: '/dashboard/workplace',
+        path: '/workplace',
         component: './dashboard/workplace',
-      },
-    ],
   },
   {
-    path: '/form',
-    icon: 'form',
-    name: 'form',
-    routes: [
-      {
-        path: '/form',
-        redirect: '/form/basic-form',
-      },
-      {
-        name: 'basic-form',
-        icon: 'smile',
-        path: '/form/basic-form',
-        component: './form/basic-form',
-      },
-      {
-        name: 'step-form',
-        icon: 'smile',
-        path: '/form/step-form',
-        component: './form/step-form',
-      },
-      {
-        name: 'advanced-form',
-        icon: 'smile',
-        path: '/form/advanced-form',
-        component: './form/advanced-form',
-      },
-    ],
+     name: 'supermarket',
+            icon: 'smile',
+            path: '/supermarket',
+            component: './supermarket',
   },
-  {
-    path: '/list',
-    icon: 'table',
-    name: 'list',
-    routes: [
-      {
-        path: '/list/search',
-        name: 'search-list',
-        component: './list/search',
-        routes: [
-          {
-            path: '/list/search',
-            redirect: '/list/search/articles',
-          },
-          {
-            name: 'articles',
+{
+     name: 'publicClue',
             icon: 'smile',
-            path: '/list/search/articles',
-            component: './list/search/articles',
-          },
-          {
-            name: 'projects',
-            icon: 'smile',
-            path: '/list/search/projects',
-            component: './list/search/projects',
-          },
-          {
-            name: 'applications',
-            icon: 'smile',
-            path: '/list/search/applications',
-            component: './list/search/applications',
-          },
-        ],
-      },
-      {
-        path: '/list',
-        redirect: '/list/table-list',
-      },
-      {
-        name: 'table-list',
-        icon: 'smile',
-        path: '/list/table-list',
-        component: './table-list',
-      },
-      {
-        name: 'basic-list',
-        icon: 'smile',
-        path: '/list/basic-list',
-        component: './list/basic-list',
-      },
-      {
-        name: 'card-list',
-        icon: 'smile',
-        path: '/list/card-list',
-        component: './list/card-list',
-      },
-    ],
+            path: '/publicClue',
+            component: './publicClue',
   },
+{
+     name: 'myClue',
+            icon: 'smile',
+            path: '/myClue',
+            component: './myClue',
+  },
+{
+     name: 'clueDoing',
+            icon: 'smile',
+            path: '/clueDoing',
+            component: './clueDoing',
+  },{
+     name: 'client',
+            icon: 'smile',
+            path: '/client',
+            component: './table-list',
+  },{
+     name: 'clientDoing',
+            icon: 'smile',
+            path: '/clientDoing',
+            component: './table-list',
+  },{
+     name: 'order',
+            icon: 'smile',
+            path: '/priceOrder',
+            component: './order',
+  },{
+     name: 'product',
+            icon: 'smile',
+            path: '/product',
+            component: './order',
+  },{
+     name: 'priceOrderDetail',
+            icon: 'smile',
+            path: '/priceOrderDetail',
+            component: './table-list',
+  },{
+     name: 'saleOrder',
+            icon: 'smile',
+            path: '/saleOrder',
+            component: './table-list',
+  },{
+     name: 'payOrder',
+            icon: 'smile',
+            path: '/payOrder',
+            component: './table-list',
+  },{
+     name: 'invoice',
+            icon: 'smile',
+            path: '/invoice',
+            component: './table-list',
+  },{
+       path: '/organization',
+       name: 'organization',
+       icon: 'profile',
+       routes: [
+         {
+           path: '/organization',
+           redirect: '/organization/basic',
+         },
+         {
+           name: 'personnel',
+           icon: 'smile',
+           path: '/organization/basic',
+           component: './profile/basic',
+         },
+         {
+           name: 'department',
+           icon: 'smile',
+           path: '/organization/advanced',
+           component: './profile/advanced',
+         },
+       ],
+     },
   {
     path: '/profile',
     name: 'profile',
@@ -254,6 +230,120 @@ export default [
         icon: 'smile',
         path: '/account/settings',
         component: './account/settings',
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    icon: 'dashboard',
+    routes: [
+      {
+        path: '/dashboard',
+        redirect: '/dashboard/analysis',
+      },
+      {
+        name: 'analysis',
+        icon: 'smile',
+        path: '/dashboard/analysis',
+        component: './dashboard/analysis',
+      },
+      {
+        name: 'monitor',
+        icon: 'smile',
+        path: '/dashboard/monitor',
+        component: './dashboard/monitor',
+      },
+    ],
+  },
+  {
+    path: '/form',
+    icon: 'form',
+    name: 'form',
+    routes: [
+      {
+        path: '/form',
+        redirect: '/form/basic-form',
+      },
+      {
+        name: 'basic-form',
+        icon: 'smile',
+        path: '/form/basic-form',
+        component: './form/basic-form',
+      },
+      {
+        name: 'step-form',
+        icon: 'smile',
+        path: '/form/step-form',
+        component: './form/step-form',
+      },
+      {
+        name: 'advanced-form',
+        icon: 'smile',
+        path: '/form/advanced-form',
+        component: './form/advanced-form',
+      },
+    ],
+  },
+  {
+    path: '/list',
+    icon: 'table',
+    name: 'list',
+    routes: [
+      {
+        path: '/list/search',
+        name: 'search-list',
+        component: './list/search',
+        routes: [
+          {
+            path: '/list/search',
+            redirect: '/list/search/articles',
+          },
+          {
+            name: 'articles',
+            icon: 'smile',
+            path: '/list/search/articles',
+            component: './list/search/articles',
+          },
+          {
+            name: 'projects',
+            icon: 'smile',
+            path: '/list/search/projects',
+            component: './list/search/projects',
+          },
+          {
+            name: 'applications',
+            icon: 'smile',
+            path: '/list/search/applications',
+            component: './list/search/applications',
+          },
+        ],
+      },
+      {
+        path: '/list',
+        redirect: '/list/table-list',
+      },
+      {
+            path: '/list',
+            redirect: '/list/table-list',
+       },
+      {
+        name: 'table-list',
+        icon: 'smile',
+        path: '/list/table-list',
+        component: './table-list',
+      },
+      {
+        name: 'basic-list',
+        icon: 'smile',
+        path: '/list/basic-list',
+        component: './list/basic-list',
+      },
+      {
+        name: 'card-list',
+        icon: 'smile',
+        path: '/list/card-list',
+        component: './list/card-list',
       },
     ],
   },
