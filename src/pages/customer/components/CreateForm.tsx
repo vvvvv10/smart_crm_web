@@ -1,4 +1,4 @@
-import {addActivities, addRule} from '@/services/ant-design-pro/api';
+import {addCustomer, addRule} from '@/services/ant-design-pro/api';
 import { PlusOutlined } from '@ant-design/icons';
 import { ActionType, ModalForm, ProFormText, ProFormTextArea, ProFormDateRangePicker } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl, useRequest } from '@umijs/max';
@@ -19,7 +19,7 @@ const CreateForm: FC<CreateFormProps> = (props) => {
    * */
   const intl = useIntl();
 
-  const { run, loading } = useRequest(addActivities, {
+  const { run, loading } = useRequest(addCustomer, {
     manual: true,
     onSuccess: () => {
       messageApi.success('Added successfully');
@@ -35,7 +35,7 @@ const CreateForm: FC<CreateFormProps> = (props) => {
       {contextHolder}
       <ModalForm
         title={intl.formatMessage({
-          id: 'pages.searchTable.createForm.newActivities',
+          id: 'pages.searchTable.createForm.newCustomer',
           defaultMessage: 'New Activities',
         })}
         trigger={
@@ -64,25 +64,40 @@ const CreateForm: FC<CreateFormProps> = (props) => {
             },
           ]}
           width="md"
-          name="activityName"
-          label="活动名称"
+          name="customerName"
+          label="客户名称"
         />
         <ProFormText
           width="md"
-          name="department"
-          label="部门"
+          name="companyName"
+          label="公司名称"
         />
-        <ProFormDateRangePicker
-          fieldProps={{
-            format: 'YYYY-MM-DDTHH:mm:ss',
-            showTime: true,
-            placeholder: ['startTime', 'endTime'],
-          }}
-        name="time"
-        label="时间"
+        <ProFormText
+          width="md"
+          name="phone"
+          label="手机号"
         />
-
-        <ProFormTextArea width="md" name="activitiesContent" label="活动内容"/>
+        <ProFormText
+          width="md"
+          name="email"
+          label="邮箱"
+        />
+        <ProFormText
+          width="md"
+          name="address"
+          label="地址"
+        />
+        <ProFormText
+          width="md"
+          name="business"
+          label="行业"
+        />
+        <ProFormText
+          width="md"
+          name="sex"
+          label="性别"
+        />
+        <ProFormTextArea width="md" name="remark" label="备注"/>
       </ModalForm>
     </>
   );

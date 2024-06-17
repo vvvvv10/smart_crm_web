@@ -1,4 +1,4 @@
-import { removeRule, clue } from '@/services/ant-design-pro/api';
+import { removeRule, rule } from '@/services/ant-design-pro/customer-api';
 import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
 import {
   FooterToolbar,
@@ -40,16 +40,15 @@ const TableList: React.FC = () => {
     },
   });
 
-  const columns: ProColumns<API.ClueListItem>[] = [
+  const columns: ProColumns<API.RuleListItem>[] = [
     {
       title: (
         <FormattedMessage
-          id="pages.searchTable.clue.id"
-          defaultMessage="Rule name"
+          id="pages.searchTable.customer.name"
+          defaultMessage="客户名称"
         />
       ),
-      dataIndex: 'id',
-      tip: 'The rule name is the unique key',
+      dataIndex: 'customerName',
       render: (dom, entity) => {
         return (
           <a
@@ -64,112 +63,84 @@ const TableList: React.FC = () => {
       },
     },
     {
+      title: <FormattedMessage id="pages.searchTable.customer.companyName" defaultMessage="Description" />,
+      dataIndex: 'companyName',
+      valueType: 'textarea',
+    },
+    {
       title: (
         <FormattedMessage
-          id="pages.searchTable.clue.status"
+          id="pages.searchTable.customer.business"
           defaultMessage="Number of service calls"
         />
       ),
-      dataIndex: 'status',
+      dataIndex: 'business',
+      sorter: true,
       hideInForm: true,
-      valueEnum: {
-        0: {
-          text: (
-            <FormattedMessage
-              id="pages.searchTable.nameStatus.default"
-              defaultMessage="Shut down"
-            />
-          ),
-          status: 'Default',
-        },
-        1: {
-          text: (
-            <FormattedMessage id="pages.searchTable.nameStatus.running" defaultMessage="Running" />
-          ),
-          status: 'Processing',
-        },
-        2: {
-          text: (
-            <FormattedMessage id="pages.searchTable.nameStatus.online" defaultMessage="Online" />
-          ),
-          status: 'Success',
-        },
-        3: {
-          text: (
-            <FormattedMessage
-              id="pages.searchTable.nameStatus.abnormal"
-              defaultMessage="Abnormal"
-            />
-          ),
-          status: 'Error',
-        },
-      },
+      // renderText: (val: string) =>
+      //   `${val}${intl.formatMessage({
+      //     id: 'pages.searchTable.tenThousand',
+      //     defaultMessage: ' 万 ',
+      //   })}`,
     },
     {
-      title: <FormattedMessage id="pages.searchTable.clue.companyName" defaultMessage="Description" />,
-      dataIndex: 'companyName',
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.companyContactsName" defaultMessage="Description" />,
-      dataIndex: 'companyContactsName',
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.companyContactsTel" defaultMessage="Description" />,
-      dataIndex: 'companyContactsTel',
-      hideInTable: true,
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.companyContactsSex" defaultMessage="Description" />,
-      dataIndex: 'companyContactsSex',
-      hideInTable: true,
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.companyContactsEmail" defaultMessage="Description" />,
-      dataIndex: 'companyContactsEmail',
-      hideInTable: true,
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.companyAddress" defaultMessage="Description" />,
-      dataIndex: 'companyAddress',
-      hideInTable: true,
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.companyContactsJobTitle" defaultMessage="Description" />,
-      dataIndex: 'companyContactsJobTitle',
-      hideInTable: true,
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.clueSource" defaultMessage="Description" />,
-      dataIndex: 'clueSource',
-      hideInTable: true,
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.activityName" defaultMessage="Description" />,
-      dataIndex: 'activityName',
-      hideInTable: true,
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.userName" defaultMessage="Description" />,
-      dataIndex: 'userName',
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.remark" defaultMessage="Description" />,
-      dataIndex: 'remark',
-    },
-    {
-      title: <FormattedMessage id="pages.searchTable.clue.assignTime" defaultMessage="Status" />,
-      dataIndex: 'assignTime',
-      hideInTable: true,
+      title: <FormattedMessage id="pages.searchTable.customer.email" defaultMessage="Status" />,
+      dataIndex: 'email',
+      hideInForm: true,
     },
     {
       title: (
         <FormattedMessage
-          id="pages.searchTable.clue.assignTime"
+          id="pages.searchTable.customer.phone"
           defaultMessage="Last scheduled time"
         />
       ),
       sorter: true,
-      dataIndex: 'assignTime',
+      dataIndex: 'phone',
+      renderFormItem: (item, { defaultRender, ...rest }, form) => {
+        const phone = form.getFieldValue('phone');
+
+        return defaultRender(item);
+      },
+    },
+    {
+      title: (
+        <FormattedMessage
+          id="pages.searchTable.customer.sex"
+          defaultMessage="Last scheduled time"
+        />
+      ),
+      sorter: true,
+      dataIndex: 'sex',
+    },
+      {
+        title: (
+          <FormattedMessage
+            id="pages.searchTable.customer.remark"
+            defaultMessage="Last scheduled time"
+          />
+        ),
+        sorter: true,
+        dataIndex: 'remark',
+      },
+    {
+      title: (
+        <FormattedMessage
+          id="pages.searchTable.customer.userId"
+          defaultMessage="Last scheduled time"
+        />
+      ),
+      dataIndex: 'userId',
+    },
+    {
+      title: (
+        <FormattedMessage
+          id="pages.searchTable.customer.updateTime"
+          defaultMessage="Last scheduled time"
+        />
+      ),
+      sorter: true,
+      dataIndex: 'updateTime',
       valueType: 'dateTime',
       renderFormItem: (item, { defaultRender, ...rest }, form) => {
         const status = form.getFieldValue('status');
@@ -191,7 +162,7 @@ const TableList: React.FC = () => {
       },
     },
     {
-      title: <FormattedMessage id="pages.searchTable.titleOption" defaultMessage="Operating" />,
+      title: <FormattedMessage id="pages.searchTable.title7" defaultMessage="Operating" />,
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => [
@@ -222,7 +193,7 @@ const TableList: React.FC = () => {
    * @param selectedRows
    */
   const handleRemove = useCallback(
-    async (selectedRows: API.ClueListItem[]) => {
+    async (selectedRows: API.RuleListItem[]) => {
       if (!selectedRows?.length) {
         messageApi.warning('请选择删除项');
 
@@ -241,9 +212,9 @@ const TableList: React.FC = () => {
   return (
     <PageContainer>
       {contextHolder}
-      <ProTable<API.ClueListItem, API.PageParams>
+      <ProTable<API.RuleListItem, API.PageParams>
         headerTitle={intl.formatMessage({
-          id: 'pages.searchTable.clue.title',
+          id: 'pages.searchTable.title',
           defaultMessage: 'Enquiry form',
         })}
         actionRef={actionRef}
@@ -252,7 +223,7 @@ const TableList: React.FC = () => {
           labelWidth: 120,
         }}
         toolBarRender={() => [<CreateForm key="create" reload={actionRef.current?.reload} />]}
-        request={clue}
+        request={rule}
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => {
@@ -308,15 +279,15 @@ const TableList: React.FC = () => {
         }}
         closable={false}
       >
-        {currentRow?.companyName && (
+        {currentRow?.name && (
           <ProDescriptions<API.RuleListItem>
             column={2}
-            title={currentRow?.companyName}
+            title={currentRow?.name}
             request={async () => ({
               data: currentRow || {},
             })}
             params={{
-              id: currentRow?.companyName,
+              id: currentRow?.name,
             }}
             columns={columns as ProDescriptionsItemProps<API.RuleListItem>[]}
           />

@@ -55,38 +55,16 @@ export default [
             path: '/supermarket',
             component: './supermarket',
   },
-{
+  {
      name: 'publicClue',
             icon: 'smile',
             path: '/publicClue',
             component: './publicClue',
-  },
-{
-     name: 'myClue',
-            icon: 'smile',
-            path: '/myClue',
-            component: './myClue',
-  },
-{
-     name: 'clueDoing',
-            icon: 'smile',
-            path: '/clueDoing',
-            component: './clueDoing',
   },{
-     name: 'client',
+     name: 'customer',
             icon: 'smile',
-            path: '/client',
-            component: './table-list',
-  },{
-     name: 'clientDoing',
-            icon: 'smile',
-            path: '/clientDoing',
-            component: './table-list',
-  },{
-     name: 'order',
-            icon: 'smile',
-            path: '/priceOrder',
-            component: './order',
+            path: '/customer',
+            component: './customer',
   },{
      name: 'product',
             icon: 'smile',

@@ -87,7 +87,7 @@ export type Member = {
 
 export type ActivitiesType = {
   id: string;
-  updatedAt: string;
+  updateTime: string;
   user: {
     link?: string;
     name: string;
@@ -102,7 +102,7 @@ export type ActivitiesType = {
     link: string;
   };
 
-  template: string;
+  companyName: string;
 };
 
 export type RadarDataType = {

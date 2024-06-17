@@ -7,7 +7,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import type { FC } from 'react';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import type { ActivitiesType, CurrentUser } from './data.d';
-import { fakeChartData, queryActivities, queryProjectNotice } from './service';
+import {clue, fakeChartData, queryActivities, queryProjectNotice} from './service';
 import useStyles from './style.style';
 dayjs.extend(relativeTime);
 
@@ -60,7 +60,7 @@ const PageHeaderContent: FC<{
       </div>
       <div className={styles.content}>
         <div className={styles.contentTitle}>
-          早安，
+          你好，
           {currentUser.name}
           ，祝你开心每一天！
         </div>
@@ -93,31 +93,21 @@ const Workplace: FC = () => {
   const { loading: activitiesLoading, data: activities = [] } = useRequest(queryActivities);
   const { data } = useRequest(fakeChartData);
   const renderActivities = (item: ActivitiesType) => {
-    const events = item.template.split(/@\{([^{}]*)\}/gi).map((key) => {
-      if (item[key as keyof ActivitiesType]) {
-        const value = item[key as 'user'];
-        return (
-          <a href={value?.link} key={value?.name}>
-            {value.name}
-          </a>
-        );
-      }
-      return key;
-    });
+    console.log(item.createTime)
     return (
       <List.Item key={item.id}>
         <List.Item.Meta
-          avatar={<Avatar src={item.user.avatar} />}
+          avatar={<Avatar src={"https://gw.alipayobjects.com/zos/rmsportal/sBxjgqiuHMGRkIjqlQCd.png"} />}
           title={
             <span>
-              <a className={styles.username}>{item.user.name}</a>
+              <a className={styles.username}>{"钱家杰"}</a>
               &nbsp;
-              <span className={styles.event}>{events}</span>
+              <span className={styles.event}>于 {item.createTime},将【{item.companyName}】转换为客户</span>
             </span>
           }
           description={
-            <span className={styles.datetime} title={item.updatedAt}>
-              {dayjs(item.updatedAt).fromNow()}
+            <span className={styles.datetime} title={item.updateTime}>
+              {dayjs(item.updateTime).fromNow()}
             </span>
           }
         />
@@ -149,7 +139,7 @@ const Workplace: FC = () => {
             style={{
               marginBottom: 24,
             }}
-            title="进行中的项目"
+            title="跟踪的线索"
             bordered={false}
             extra={<Link to="/">全部项目</Link>}
             loading={projectLoading}
@@ -166,22 +156,12 @@ const Workplace: FC = () => {
                   bordered={false}
                 >
                   <Card.Meta
-                    title={
-                      <div className={styles.cardTitle}>
-                        <Avatar size="small" src={item.logo} />
-                        <Link to={item.href || '/'}>{item.title}</Link>
-                      </div>
-                    }
-                    description={item.description}
+                    title={item.companyName}
+                    description={" "+ item.companyContactsTel}
                   />
-                  <div className={styles.projectItemContent}>
-                    <Link to={item.memberLink || '/'}>{item.member || ''}</Link>
-                    {item.updatedAt && (
-                      <span className={styles.datetime} title={item.updatedAt}>
-                        {dayjs(item.updatedAt).fromNow()}
-                      </span>
-                    )}
-                  </div>
+                  <Card.Meta
+                    title={" "+item.companyContactsName}
+                  />
                 </Card>
               </Card.Grid>
             ))}
@@ -267,8 +247,8 @@ const Workplace: FC = () => {
                   return (
                     <Col span={12} key={`members-item-${item.id}`}>
                       <a>
-                        <Avatar src={item.logo} size="small" />
-                        <span className={styles.member}>{item.member.substring(0, 3)}</span>
+                        <Avatar src={"https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png"} size="small" />
+                        {/*<span className={styles.member}>{item.member.substring(0, 3)}</span>*/}
                       </a>
                     </Col>
                   );

@@ -131,6 +131,17 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request: RequestConfig = {
-  baseURL: 'https://proapi.azurewebsites.net',
+  // baseURL: 'https://proapi.azurewebsites.net',
+  baseURL: 'http://localhost:8080',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  requestInterceptors: [
+    (config) => {
+      // 在请求发送之前做一些操作
+      config.headers['Authorization'] = 'Bearer your_token_here';  // 添加认证头
+      return config;
+    },
+  ],
   ...errorConfig,
 };

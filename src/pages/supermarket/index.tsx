@@ -44,16 +44,17 @@ const TableList: React.FC = () => {
     {
       title: (
         <FormattedMessage
-          id="pages.searchTable.updateForm.ruleName.nameLabel"
-          defaultMessage="Rule name"
+          id="pages.searchTable.activityName"
+          defaultMessage="活动名称"
         />
       ),
-      dataIndex: 'name',
+      dataIndex: 'activityName',
       tip: 'The rule name is the unique key',
       render: (dom, entity) => {
         return (
           <a
             onClick={() => {
+              console.log(entity)
               setCurrentRow(entity);
               setShowDetail(true);
             }}
@@ -64,28 +65,36 @@ const TableList: React.FC = () => {
       },
     },
     {
-      title: <FormattedMessage id="pages.searchTable.titleDesc" defaultMessage="Description" />,
-      dataIndex: 'desc',
+      title: <FormattedMessage id="pages.searchTable.department" defaultMessage="Description" />,
+      dataIndex: 'department',
       valueType: 'textarea',
     },
     {
       title: (
         <FormattedMessage
-          id="pages.searchTable.titleCallNo"
+          id="pages.searchTable.userName"
           defaultMessage="Number of service calls"
         />
       ),
-      dataIndex: 'callNo',
+      dataIndex: 'userName',
       sorter: true,
       hideInForm: true,
-      renderText: (val: string) =>
-        `${val}${intl.formatMessage({
-          id: 'pages.searchTable.tenThousand',
-          defaultMessage: ' 万 ',
-        })}`,
+      // renderText: (val: string) =>
+      //   `${val}${intl.formatMessage({
+      //     id: 'pages.searchTable.tenThousand',
+      //     defaultMessage: ' 万 ',
+      //   })}`,
     },
     {
-      title: <FormattedMessage id="pages.searchTable.titleStatus" defaultMessage="Status" />,
+      title: (
+        <FormattedMessage
+          id="pages.searchTable.activityContent"
+        />
+      ),
+      dataIndex: 'activityContent',
+    },
+    {
+      title: <FormattedMessage id="pages.searchTable.status" defaultMessage="Status" />,
       dataIndex: 'status',
       hideInForm: true,
       valueEnum: {
@@ -106,7 +115,7 @@ const TableList: React.FC = () => {
         },
         2: {
           text: (
-            <FormattedMessage id="pages.searchTable.nameStatus.online" defaultMessage="Online" />
+            <FormattedMessage id="pages.searchTable.nameStatus.online" defaultMessage="end" />
           ),
           status: 'Success',
         },
@@ -124,12 +133,12 @@ const TableList: React.FC = () => {
     {
       title: (
         <FormattedMessage
-          id="pages.searchTable.titleStartAt"
+          id="pages.searchTable.startTime"
           defaultMessage="Last scheduled time"
         />
       ),
       sorter: true,
-      dataIndex: 'updatedAt',
+      dataIndex: 'startTime',
       valueType: 'dateTime',
       renderFormItem: (item, { defaultRender, ...rest }, form) => {
         const status = form.getFieldValue('status');
@@ -153,12 +162,12 @@ const TableList: React.FC = () => {
       {
         title: (
           <FormattedMessage
-            id="pages.searchTable.titleEndAt"
+            id="pages.searchTable.endTime"
             defaultMessage="Last scheduled time"
           />
         ),
         sorter: true,
-        dataIndex: 'updatedAt',
+        dataIndex: 'endTime',
         valueType: 'dateTime',
         renderFormItem: (item, { defaultRender, ...rest }, form) => {
           const status = form.getFieldValue('status');
@@ -180,7 +189,7 @@ const TableList: React.FC = () => {
         },
       },
     {
-      title: <FormattedMessage id="pages.searchTable.titleOption" defaultMessage="Operating" />,
+      title: <FormattedMessage id="pages.searchTable.option" defaultMessage="Operating" />,
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => [
@@ -297,15 +306,15 @@ const TableList: React.FC = () => {
         }}
         closable={false}
       >
-        {currentRow?.name && (
+        {currentRow?.activityName && (
           <ProDescriptions<API.RuleListItem>
             column={2}
-            title={currentRow?.name}
+            title={currentRow?.activityName}
             request={async () => ({
               data: currentRow || {},
             })}
             params={{
-              id: currentRow?.name,
+              id: currentRow?.activityName,
             }}
             columns={columns as ProDescriptionsItemProps<API.RuleListItem>[]}
           />

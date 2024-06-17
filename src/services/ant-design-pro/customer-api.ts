@@ -51,33 +51,9 @@ export async function rule(
   },
   options?: { [key: string]: any },
 ) {
-  return request<API.RuleList>('/api/v1/activities/queryActivities', {
+  return request<API.RuleList>('/api/v1/customer/queryCustomer', {
     method: 'POST',
     data: {
-    },
-    params: {
-
-      ...params,
-    },
-    ...(options || {}),
-  });
-}
-
-/** 获取规则列表 GET /api/rule */
-export async function clue(
-  params: {
-    // query
-    /** 当前的页码 */
-    current?: number;
-    /** 页面的容量 */
-    pageSize?: number;
-  },
-  options?: { [key: string]: any },
-) {
-  return request<API.ClueListItem>('/api/v1/clue/queryClue', {
-    method: 'POST',
-    data: {
-      ...params,
     },
     params: {
 
@@ -89,34 +65,12 @@ export async function clue(
 
 /** 更新规则 PUT /api/rule */
 export async function updateRule(options?: { [key: string]: any }) {
-  return request<API.RuleListItem>('/api/rule', {
+  return request<API.RuleListItem>('/api/v1/customer/addCustomer', {
     method: 'POST',
     data: {
       method: 'update',
       ...(options || {}),
     },
-  });
-}
-
-export async function addClue(options?: { [key: string]: any }) {
-  const body = options?.data ? options.data : {};
-  // 处理 time 字段，将其分解为 startTime 和 endTime
-  if (Array.isArray(body.time) && body.time.length === 2) {
-    body.startTime = body.time[0];
-    body.endTime = body.time[1];
-    delete body.time; // 删除原来的 time 字段
-  }
-
-  // 构造新的 options 对象
-  const newOptions = {
-    ...options,
-    body: JSON.stringify(body), // 将修改后的请求体转换回字符串
-  };
-
-  return request<API.RuleListItem>('/api/v1/clue/addClue', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    ...(newOptions || {}),
   });
 }
 
@@ -137,18 +91,10 @@ export async function addActivities(options?: { [key: string]: any }) {
     body: JSON.stringify(body), // 将修改后的请求体转换回字符串
   };
 
-  return request<API.RuleListItem>('/api/v1/activities/addActivities', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    ...(newOptions || {}),
-  });
-}
-
-export async function addCustomer(options?: { [key: string]: any }) {
   return request<API.RuleListItem>('/api/v1/customer/addCustomer', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    ...(options || {}),
+    ...(newOptions || {}),
   });
 }
 
